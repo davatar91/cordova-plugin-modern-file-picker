@@ -1,0 +1,30 @@
+{
+  "name": "cordova-plugin-modern-file-picker",
+  "version": "1.0.0",
+  "description": "A modern, backward-compatible Cordova file picker for Android and iOS.",
+  "main": "www/chooser.js",
+  "types": "types/index.d.ts",
+  "keywords": [
+    "cordova",
+    "cordova-plugin",
+    "file",
+    "picker",
+    "chooser",
+    "android",
+    "ios"
+  ],
+  "cordova": {
+    "id": "cordova-plugin-modern-file-picker",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "scripts": {
+    "test": "node --test test/**/*.test.js"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18"
+  }
+}

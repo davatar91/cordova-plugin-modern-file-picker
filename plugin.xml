@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-modern-file-picker"
+        version="1.0.0">
+    <name>Modern File Picker</name>
+    <description>Modern native file selection with the legacy chooser.getFiles API.</description>
+    <license>Apache-2.0</license>
+    <keywords>cordova,file,picker,chooser,android,ios</keywords>
+
+    <!--
+      Keep the original global name deliberately. Applications replacing
+      cordova-plugin-simple-file-chooser can keep calling chooser.getFiles(...).
+    -->
+    <js-module src="www/chooser.js" name="Chooser">
+        <clobbers target="chooser" />
+    </js-module>
+
+    <!--
+      The source itself only uses Android API 19+ APIs. Older cordova-android
+      versions may still be used by legacy applications, while current projects
+      should use the latest cordova-android to target recent Android SDKs.
+    -->
+    <platform name="android">
+        <engine name="cordova-android" version=">=10.0.0" />
+        <source-file src="src/android/Chooser.java" target-dir="src/com/hcoss/cordova/filepicker" />
+        <config-file target="config.xml" parent="/*">
+            <feature name="Chooser">
+                <param name="android-package" value="com.hcoss.cordova.filepicker.Chooser" />
+            </feature>
+        </config-file>
+    </platform>
+
+    <!--
+      Cordova-iOS compiles Swift source natively, so no obsolete Swift-support
+      helper plugin is required. The modern implementation targets iOS 15 and
+      later, which is the oldest deployment target Xcode 27 accepts.
+    -->
+    <platform name="ios">
+        <engine name="cordova-ios" version=">=8.0.0" />
+        <source-file src="src/ios/Chooser.swift" />
+        <config-file target="config.xml" parent="/*">
+            <feature name="Chooser">
+                <param name="ios-package" value="Chooser" />
+            </feature>
+        </config-file>
+    </platform>
+</plugin>
